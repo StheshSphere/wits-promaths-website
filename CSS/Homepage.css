@@ -1,0 +1,605 @@
+/* ==========================================================
+   Promaths Society CSS Scaffold
+   ========================================================== */
+
+/* -------------------- */
+/* Root Variables       */
+/* -------------------- */
+:root {
+    /* Colors */
+    --color-primary: #20BDC2;
+    --color-secondary: #B0B0B0;
+    --color-tertiary: #F1D334;
+    --color-error: #FF0D0D;
+    --color-white: #FFFFFF;
+    --color-black: #243333;
+    --color-black-75: rgba(36, 51, 51, 0.75);
+    --color-black-50: rgba(36, 51, 51, 0.50);
+    --color-black-25: rgba(36, 51, 51, 0.25);
+    --color-black-10: rgba(36, 51, 51, 0.10);
+    --color-black-5: rgba(36, 51, 51, 0.05);
+
+    /* Fonts */
+    --font-family-base: 'Open Sans', sans-serif;
+    --font-family-heading: 'Poppins', sans-serif;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Font Sizes */
+    --font-size-xsmall: 0.64rem;
+    --font-size-small: 0.8rem;
+    --font-size-paragraph: 1rem;
+    --font-size-base: 1.3125rem;
+    /* 21px */
+    --font-size-h6: 1.64rem;
+    --font-size-h5: 2.05rem;
+    --font-size-h4: 2.56rem;
+    --font-size-h3: 3.20rem;
+    --font-size-h2: 4rem;
+    --font-size-h1: 5rem;
+}
+
+/* -------------------- */
+/* Responsive Variables */
+/* -------------------- */
+@media (max-width: 1024px) {
+    :root {
+        --font-size-base: 1.125rem;
+        --font-size-h6: 1.406rem;
+        --font-size-h5: 1.758rem;
+        --font-size-h4: 2.197rem;
+        --font-size-h3: 2.746rem;
+        --font-size-h2: 3.433rem;
+        --font-size-h1: 4.291rem;
+    }
+}
+
+@media (max-width: 767px) {
+    :root {
+        --font-size-base: 1.125rem;
+        --font-size-h6: 1.35rem;
+        --font-size-h5: 1.62rem;
+        --font-size-h4: 1.944rem;
+        --font-size-h3: 2.332rem;
+        --font-size-h2: 2.798rem;
+        --font-size-h1: 3.358rem;
+    }
+}
+
+/* ==========================================================
+   Base Typography & Utilities
+   ========================================================== */
+body {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-paragraph);
+    color: var(--color-black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-bold);
+}
+
+.text-small {
+    font-size: var(--font-size-small);
+}
+
+.text-xsmall {
+    font-size: var(--font-size-xsmall);
+}
+
+/* ==========================================================
+   Header & Navigation
+   ========================================================== */
+.header {
+    background: var(--color-white);
+}
+
+.header .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 64px;
+    height: auto;
+}
+
+.nav-links a {
+    margin: 0 1rem;
+    color: var(--color-black-75);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--color-primary);
+}
+
+/* Login Button */
+.btn-login {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    border: 2px solid var(--color-tertiary);
+    background: var(--color-white);
+    color: var(--color-tertiary);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background: var(--color-tertiary);
+    color: var(--color-white);
+}
+
+.btn-login:active {
+    background: var(--color-tertiary);
+    opacity: 0.85;
+}
+
+.btn-login:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Hamburger Toggle */
+.nav-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-black-75);
+    cursor: pointer;
+    display: none;
+}
+
+.nav-toggle:focus {
+    outline: 2px solid var(--color-primary);
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 280px;
+    background: var(--color-white);
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    padding: 32px;
+    display: none;
+}
+
+.mobile-nav.active {
+    display: block;
+    transform: translateX(0);
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav li {
+    margin-bottom: 24px;
+}
+
+.mobile-nav a {
+    color: var(--color-black-75);
+    font-size: var(--font-size-h5);
+    font-family: var(--font-family-heading);
+    text-decoration: none;
+}
+
+/* Responsive Navigation */
+@media (max-width: 767px) {
+    .nav-links {
+        display: none;
+    }
+
+    .header-actions .btn-login {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: inline-block;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero h1,
+    .hero h3,
+    .hero h6 {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .footer-row {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ==========================================================
+   Hero Section
+   ========================================================== */
+.hero {
+    position: relative;
+    width: 100%;
+    max-height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2rem 0;
+    color: var(--color-black);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: -1;
+}
+
+.hero-background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Top Center Alignment for Investec */
+.hero-top-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.investec-logo {
+    width: 320px;
+    max-width: 100%;
+    margin-bottom: 8px;
+}
+
+.partnership-text {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-light);
+    color: var(--color-black-75);
+    font-size: var(--font-size-h6);
+    margin: 1rem 0;
+}
+
+/* Main Text Left-Aligned */
+.hero-main-text {
+    margin-top: 64px;
+    text-align: left;
+}
+
+.hero-main-text h1 {
+    font-size: var(--font-size-h1);
+    margin: 0;
+}
+
+.hero-main-text h3 {
+    font-size: var(--font-size-h3);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-light);
+    margin: 0;
+}
+
+.hero-description {
+    font-size: var(--font-size-h6);
+    font-weight: var(--font-weight-bold);
+    max-width: 600px;
+    margin: 0;
+}
+
+/* Hero Buttons */
+.hero-buttons {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.hero-buttons a {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: var(--font-weight-semibold);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
+
+/* Join the Community Button */
+.btn-join {
+    background: linear-gradient(to right, #20BDC2, #8DBDBF);
+    color: var(--color-white);
+    border: none;
+}
+
+.btn-join:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* Explore Events Button */
+.btn-explore {
+    background: var(--color-white);
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.btn-explore:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* Meet Our Team Button */
+.btn-meet {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
+    cursor: default;
+    opacity: 0.7;
+}
+
+.btn-meet:hover {
+    transform: translateY(-2px);
+    border: 2px solid var(--color-secondary);
+    opacity: 0.9;
+}
+
+/* ==========================================================
+   About Us Section
+   ========================================================== */
+.about-us {
+    margin: 1rem 1rem;
+}
+
+.about-us h6 {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-h6);
+    line-height: 1.6;
+    color: var(--color-black-75);
+    margin-top: 0.5rem;
+}
+
+.about-us h2 {
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-h2);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 1rem 1rem;
+}
+
+.about-card {
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.about-card h4 {
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-h5);
+    margin: 0 1rem;
+}
+
+.about-card p {
+    margin: 0 1rem;
+    font-size: var(--font-size-paragraph);
+}
+
+.about-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================
+   Team Section
+   ========================================================== */
+.team-section {
+    background-color: var(--color-white);
+    text-align: center;
+    margin: 1rem 1rem;
+}
+
+.section-heading {
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-h3);
+    margin-bottom: 32px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+}
+
+.team-card {
+    background: linear-gradient(to bottom, var(--color-white) 70%, var(--color-black-5));
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.team-card .team-info {
+    padding: 16px;
+}
+
+.team-card h5 {
+    margin: 0;
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-weight-bold);
+}
+
+.team-card h6 {
+    margin: 4px 0 12px;
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-light);
+    font-size: var(--font-size-h6);
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.social-icons a {
+    color: var(--color-black-50);
+    font-size: 1.6rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--color-primary);
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ==============================
+   Footer Section
+============================== */
+
+.footer {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    padding: 2rem 1rem;
+}
+
+.footer-row {
+    /* max-width: 1440px; */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-logo {
+    width: 64px;
+    height: auto;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-nav a {
+    color: var(--color-white);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.footer-nav a:hover {
+    opacity: 0.8;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-social a {
+    color: var(--color-white);
+    font-size: 1.6rem;
+    transition: opacity 0.3s ease;
+}
+
+.footer-social a:hover {
+    opacity: 0.8;
+}
+
+/* Footer Bottom Text */
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.footer-bottom p {
+    margin: 0.25rem 0;
+}
+
+.footer-bottom .copyright {
+    font-size: var(--font-size-paragraph);
+}
+
+.footer-bottom .credits {
+    font-size: var(--font-size-xsmall);
+    font-weight: var(--font-weight-bold);
+}
