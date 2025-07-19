@@ -45,7 +45,7 @@
                 <ul>
                     <li><a href="#about">About</a></li>
                     <li><a href="#team">Team</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="Login.html">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -243,13 +243,56 @@
         document.addEventListener("DOMContentLoaded", () => {
             const toggleButton = document.querySelector(".nav-toggle");
             const mobileNav = document.getElementById("mobileNav");
+            const closeButton = document.createElement("button");
 
+            // Create close button
+            closeButton.innerHTML = '<i class="fas fa-times"></i>';
+            closeButton.className = "mobile-nav-close";
+            closeButton.setAttribute("aria-label", "Close navigation");
+            mobileNav.appendChild(closeButton);
+
+            // Toggle menu
             toggleButton.addEventListener("click", () => {
-                const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
-                toggleButton.setAttribute("aria-expanded", !isExpanded);
-                mobileNav.classList.toggle("active");
+                mobileNav.classList.add("active");
+                document.body.style.overflow = "hidden"; // Prevent scrolling
+            });
+
+            // Close menu
+            closeButton.addEventListener("click", () => {
+                mobileNav.classList.remove("active");
+                document.body.style.overflow = "";
+            });
+
+            // Close when clicking on links
+            mobileNav.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    mobileNav.classList.remove("active");
+                    document.body.style.overflow = "";
+                });
+            });
+
+            // Close when clicking outside
+            mobileNav.addEventListener("click", (e) => {
+                if (e.target === mobileNav) {
+                    mobileNav.classList.remove("active");
+                    document.body.style.overflow = "";
+                }
             });
         });
+        // Sticky header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        // Simple error tracking
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('404 encountered for:', document.referrer);
+            // Or send to analytics
+        })
     </script>
 </body>
 

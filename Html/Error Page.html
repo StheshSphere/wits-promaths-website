@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>404 - Page Not Found | WITS Promaths Society</title>
+    <meta name="description"
+        content="The page you're looking for doesn't exist. Return to the WITS Promaths Society homepage.">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../CSS/Error Page.css">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="header">
+        <div class="container">
+            <img src="../assets/logos/Promaths.png" alt="Promaths Logo" class="logo" />
+
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#team">Team</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn-login">Login</a>
+
+                <!-- Mobile Nav Toggle -->
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <!-- Mobile Navigation Panel -->
+            <nav class="mobile-nav" id="mobileNav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="Login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="error-main">
+        <div class="container">
+            <div class="error-content">
+                <h1>404</h1>
+                <h2>Oops! Page Not Found</h2>
+                <p>Sorry, the page you are looking for doesn't exist or has been moved. If you think something is
+                    broken, please report the problem.</p>
+
+                <div class="error-buttons">
+                    <a href="../Html/Homepage.html" class="btn-home">
+                        <i class="fas fa-home" aria-hidden="true"></i> Return Home
+                    </a>
+                    <a href="mailto:support@promaths.org?subject=Broken%20Link%20Report" class="btn-report">
+                        <i class="fas fa-bug" aria-hidden="true"></i> Report Problem
+                    </a>
+                </div>
+            </div>
+            <div class="error-illustration" aria-hidden="true">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-row">
+            <!-- Logo -->
+            <img src="../assets/logos/Promaths white.png" alt="WITS Promaths Logo" class="footer-logo">
+
+            <!-- Navigation Links -->
+            <nav class="footer-nav">
+                <a href="#about">About</a>
+                <a href="#events">Events</a>
+                <a href="#team">Team</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <!-- Social Icons -->
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">© 2025 WITS Promaths Society. All rights reserved.</p>
+            <p class="credits">Designed by StheshSphere.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleButton = document.querySelector(".nav-toggle");
+            const mobileNav = document.getElementById("mobileNav");
+            const closeButton = document.createElement("button");
+
+            // Create close button
+            closeButton.innerHTML = '<i class="fas fa-times"></i>';
+            closeButton.className = "mobile-nav-close";
+            closeButton.setAttribute("aria-label", "Close navigation");
+            mobileNav.appendChild(closeButton);
+
+            // Toggle menu
+            toggleButton.addEventListener("click", () => {
+                mobileNav.classList.add("active");
+                document.body.style.overflow = "hidden"; // Prevent scrolling
+            });
+
+            // Close menu
+            closeButton.addEventListener("click", () => {
+                mobileNav.classList.remove("active");
+                document.body.style.overflow = "";
+            });
+
+            // Close when clicking on links
+            mobileNav.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    mobileNav.classList.remove("active");
+                    document.body.style.overflow = "";
+                });
+            });
+
+            // Close when clicking outside
+            mobileNav.addEventListener("click", (e) => {
+                if (e.target === mobileNav) {
+                    mobileNav.classList.remove("active");
+                    document.body.style.overflow = "";
+                }
+            });
+        });
+        // Sticky header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

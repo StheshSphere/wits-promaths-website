@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Create your Promaths Society account">
+    <title>Promaths Society – Sign Up</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../CSS/Signup.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div class="auth-page">
+        <img src="../assets/about/hero-background2.jpg" alt="Hero Background" class="hero-background">
+        <div class="hero-overlay"></div>
+
+        <div class="auth-container">
+            <div class="auth-header">
+                <img src="../assets/logos/Promaths.png" alt="Promaths Logo" class="logo">
+                <a href="../Html/Homepage.html" class="back-home">← Back to Home</a>
+            </div>
+
+            <div class="auth-content">
+                <h1 class="sr-only">Promaths Society Sign Up</h1>
+                <h2 class="auth-heading">Sign Up</h2>
+                <p class="auth-subheading">Sign up to enjoy the Promaths society to its fullest.</p>
+
+                <form class="auth-form" action="#" method="POST" novalidate>
+                    <!-- Error Message Container -->
+                    <div class="error-message hidden" aria-live="polite"></div>
+
+                    <!-- Name Input -->
+                    <div class="input-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Full Name" required minlength="2"
+                            autocomplete="name">
+                    </div>
+
+                    <!-- Username Input -->
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Choose a username" required
+                            minlength="3" autocomplete="username">
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required
+                            pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Please enter a valid email address"
+                            autocomplete="email">
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="input-wrapper">
+                        <label for="passwordInput">Password</label>
+                        <input type="password" id="passwordInput" name="password" placeholder="Password" required
+                            minlength="8" autocomplete="new-password">
+                        <button type="button" class="toggle-password" aria-label="Toggle password visibility"
+                            aria-pressed="false" onclick="togglePassword(this, 'passwordInput')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <div class="password-strength">
+                            <div class="strength-meter"></div>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password Input -->
+                    <div class="input-wrapper">
+                        <label for="confirmPasswordInput">Confirm Password</label>
+                        <input type="password" id="confirmPasswordInput" name="confirmPassword"
+                            placeholder="Re-enter Password" required minlength="8" autocomplete="new-password">
+                        <button type="button" class="toggle-password" aria-label="Toggle password visibility"
+                            aria-pressed="false" onclick="togglePassword(this, 'confirmPasswordInput')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+
+                    <!-- Terms Checkbox -->
+                    <div class="auth-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to all the <a href="#" class="terms-link">Terms</a> and <a href="#"
+                                class="terms-link">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <!-- Sign Up Button -->
+                    <button type="submit" class="btn-login btn-full">
+                        <span class="btn-text">Sign Up</span>
+                        <span class="loading-spinner hidden">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
+                    </button>
+
+                    <!-- OR Divider -->
+                    <div class="or-divider" aria-hidden="true">
+                        <span class="or-line"></span>
+                        <span class="or-text">or</span>
+                        <span class="or-line"></span>
+                    </div>
+
+                    <!-- Sign in with Google -->
+                    <button type="button" class="btn-google">
+                        <i class="fab fa-google"></i> Continue with Google
+                    </button>
+
+                    <!-- Login Prompt -->
+                    <p class="signup-prompt">
+                        Already have an account? <a href="Login.html">Login</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(button, inputId) {
+            const input = document.getElementById(inputId);
+            const pressed = button.getAttribute("aria-pressed") === "true";
+
+            input.type = pressed ? "password" : "text";
+            button.setAttribute("aria-pressed", !pressed);
+
+            const icon = button.querySelector("i");
+            icon.classList.toggle("fa-eye");
+            icon.classList.toggle("fa-eye-slash");
+        }
+
+        // Password strength indicator
+        const passwordInput = document.getElementById('passwordInput');
+        const strengthMeter = document.querySelector('.strength-meter');
+
+        passwordInput.addEventListener('input', function () {
+            const strength = calculatePasswordStrength(this.value);
+            strengthMeter.style.width = `${strength * 25}%`;
+            strengthMeter.style.backgroundColor = getStrengthColor(strength);
+        });
+
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^A-Za-z0-9]/)) strength++;
+            return Math.min(strength, 4);
+        }
+
+        function getStrengthColor(strength) {
+            const colors = ['#FF0D0D', '#FF8E15', '#FAB733', '#ACB334', '#20BDC2'];
+            return colors[strength];
+        }
+
+        // Form submission handling
+        document.querySelector(".auth-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const form = this;
+            const submitBtn = form.querySelector("button[type='submit']");
+            const errorContainer = form.querySelector(".error-message");
+
+            // Reset UI
+            errorContainer.classList.add("hidden");
+            submitBtn.disabled = true;
+            submitBtn.querySelector(".btn-text").classList.add("hidden");
+            submitBtn.querySelector(".loading-spinner").classList.remove("hidden");
+
+            // Validate passwords match
+            const password = form.password.value;
+            const confirmPassword = form.confirmPassword.value;
+
+            if (password !== confirmPassword) {
+                errorContainer.textContent = "Passwords do not match";
+                errorContainer.classList.remove("hidden");
+                submitBtn.disabled = false;
+                submitBtn.querySelector(".btn-text").classList.remove("hidden");
+                submitBtn.querySelector(".loading-spinner").classList.add("hidden");
+                return;
+            }
+
+            // Simulate API call
+            setTimeout(() => {
+                // This would be replaced with actual form validation and API call
+                const isValid = form.checkValidity();
+
+                if (isValid) {
+                    // Successful signup would redirect here
+                    console.log("Signup successful");
+                } else {
+                    errorContainer.textContent = "Please fill in all required fields correctly";
+                    errorContainer.classList.remove("hidden");
+                }
+
+                submitBtn.disabled = false;
+                submitBtn.querySelector(".btn-text").classList.remove("hidden");
+                submitBtn.querySelector(".loading-spinner").classList.add("hidden");
+            }, 1500);
+        });
+    </script>
+
+</body>
+
+</html>
